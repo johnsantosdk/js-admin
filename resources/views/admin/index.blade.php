@@ -548,7 +548,7 @@
         </footer>
     </div>
 
-<script src="index.js"></script> 
+<script src="js/admin.js"></script> 
 
 </body>
 </html>
