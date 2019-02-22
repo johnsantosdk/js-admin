@@ -147,7 +147,7 @@
                                         <th>Ações</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tbody-users">
 
                                         <tr>
                                             <td><img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm"></td>
@@ -161,33 +161,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            <td>
-                                                <img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm">
-                                            </td>
-                                            <td>Fulano</td>
-                                            <td>fulano@hcode.com.br</td>
-                                            <td>Sim</td>
-                                            <td>02/04/2018</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                                                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm">
-                                            </td>
-                                            <td>Fulano</td>
-                                            <td>fulano@hcode.com.br</td>
-                                            <td>Sim</td>
-                                            <td>02/04/2018</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                                                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                                            </td>
-                                        </tr> 
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -548,7 +522,10 @@
         </footer>
     </div>
 
+<script src="js-models/User.js"></script> 
+<script src="js-controllers/UserController.js"></script> 
 <script src="js/admin.js"></script> 
+
 
 </body>
 </html>
