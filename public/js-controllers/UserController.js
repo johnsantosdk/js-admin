@@ -15,9 +15,47 @@ class UserController {
 
 			event.preventDefault();
 
-			this.addLine(this.getValues());
+			let values = this.getValues();			
+
+			this.getPhoto((content) => {
+
+				values.photo = "";
+
+				 this.addLine(this.getValues());
+				//this.addLine(values);
+
+			});
+
 
 		});
+
+	}
+
+	getPhoto(callback) {
+
+		let fileReader = new FileReader();
+
+		let elements = [...this.formEl.elements].filter(item => {
+
+			if (item.name === 'photo') {
+				
+				return item;
+
+			}
+
+		});
+
+		console.log(elements[0].files[0]);
+
+		let file = elements[0].files[0];
+
+		fileReader.onload = () => {
+
+			callback(fileReader.result);
+
+		};
+
+		fileReader.readAsDataURL(file);
 
 	}
 
@@ -25,7 +63,7 @@ class UserController {
 
 		let user = {};
 
-		this.formEl.elements.forEach(function (field, index) {
+		[...this.formEl.elements].forEach(function (field, index) {
 
 			if(field.name == "gender") {
 
@@ -58,7 +96,7 @@ class UserController {
 
 		this.tableEl.innerHTML = 
 			`<tr>
-	            <td><img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm"></td>
+	            <td><img src="${objectUser.photo}" alt="User Image" class="img-circle img-sm"></td>
 	            <td>${objectUser.name}</td>
 	            <td>${objectUser.email}</td>
 	            <td>${objectUser.admin}</td>
