@@ -15,17 +15,28 @@ class UserController {
 
 			event.preventDefault();
 
+			let btn = this.formEl.querySelector("[type=submit]");
+
+			btn.disabled = true;
+
 			let values = this.getValues();			
 
-			this.getPhoto((content) => {
+			this.getPhoto().then(
+				(content) => {
 
-				values.photo = "";
+					values.photo = content;
 
-				 this.addLine(this.getValues());
-				//this.addLine(values);
+					this.addLine(values);
 
-			});
+					this.formEl.reset();
 
+					btn.disabled = false;
+
+				},
+				(e) => {
+					console.error(e);
+				}
+				);
 
 		});
 
@@ -33,30 +44,43 @@ class UserController {
 
 	getPhoto(callback) {
 
-		let fileReader = new FileReader();
+		return new Promise( (resolve, reject) => {
 
-		let elements = [...this.formEl.elements].filter(item => {
+			let fileReader = new FileReader();
 
-			if (item.name === 'photo') {
-				
-				return item;
+			let elements = [...this.formEl.elements].filter(item => {
 
+				if (item.name === 'photo') {
+					
+					return item;
+
+				}
+
+			});
+
+			console.log(elements[0].files[0]);
+
+			let file = elements[0].files[0];
+
+			fileReader.onload = () => {
+
+				resolve(fileReader.result);
+
+			};
+
+			fileReader.onerror = () => {
+
+				reject(e);
+			
 			}
 
+			if(file){
+				fileReader.readAsDataURL(file);
+			} else {
+				resolve('dist/img/boxed-bg.jpg');
+			}
+			
 		});
-
-		console.log(elements[0].files[0]);
-
-		let file = elements[0].files[0];
-
-		fileReader.onload = () => {
-
-			callback(fileReader.result);
-
-		};
-
-		fileReader.readAsDataURL(file);
-
 	}
 
 	getValues() {
@@ -70,6 +94,10 @@ class UserController {
 				if(field.checked) {
 					user[field.name] = field.name;
 				}
+
+			} else if (field.name === "admin") {
+
+				user[field.name] = field.checked;
 
 			} else {
 
@@ -94,20 +122,24 @@ class UserController {
 
 	addLine(objectUser) {
 
-		this.tableEl.innerHTML = 
-			`<tr>
-	            <td><img src="${objectUser.photo}" alt="User Image" class="img-circle img-sm"></td>
+		let tr = document.createElement('tr');
+
+		tr.innerHTML = 
+			`
+				<td><img src="${objectUser.photo}" alt="User Image" class="img-circle img-sm"></td>
 	            <td>${objectUser.name}</td>
 	            <td>${objectUser.email}</td>
-	            <td>${objectUser.admin}</td>
-	            <td>${objectUser.birth}</td>
+	            <td>${(objectUser.admin) ? 'Sim':'Não'}</td>
+	            <td>${objectUser.register}</td>
 	            <td>
 	            	<button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
 	                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
 	            </td>
-	        </tr>`;
+			`;
 
-		// document.getElementById("tbody-users").appendChild(tr);
+		this.tableEl.appendChild(tr);
+
+		console.log(objectUser);
 	}
 
 
