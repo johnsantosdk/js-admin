@@ -509,10 +509,11 @@
             Projeto desenvolvido no curso online de JavaScript da Hcode Treinamentos.
         </footer>
     </div>
-
+<script src="js-classes/Utils.js"></script> 
 <script src="js-models/User.js"></script> 
 <script src="js-controllers/UserController.js"></script> 
 <script src="js/admin.js"></script> 
+
 
 
 </body>

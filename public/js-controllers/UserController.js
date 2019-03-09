@@ -86,8 +86,17 @@ class UserController {
 	getValues() {
 
 		let user = {};
+		let isValid = true;
 
 		[...this.formEl.elements].forEach(function (field, index) {
+
+			if(['name', 'email', 'password'].indexOf(field.name) > -1 && !field.value){
+
+				field.parentElement.classList.add(['has-error']);
+
+				isValid = false;
+
+			}
 
 			if(field.name == "gender") {
 
@@ -106,6 +115,10 @@ class UserController {
 			}
 
 		});
+
+		if(!isValid) {
+			return false;
+		}
 
 		return new User(
 			user.name, 
@@ -130,7 +143,7 @@ class UserController {
 	            <td>${objectUser.name}</td>
 	            <td>${objectUser.email}</td>
 	            <td>${(objectUser.admin) ? 'Sim':'Não'}</td>
-	            <td>${objectUser.register}</td>
+	            <td>${Utils.dateFormat(objectUser.register)}</td>
 	            <td>
 	            	<button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
 	                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
