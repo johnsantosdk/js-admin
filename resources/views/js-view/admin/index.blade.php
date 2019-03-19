@@ -166,9 +166,9 @@
                                 <!-- small box -->
                                 <div class="small-box bg-green">
                                     <div class="inner">
-                                        <h3>44</h3>
+                                        <h3 id="number-users-comomn"></h3>
                           
-                                        <p>Novos Usuários</p>
+                                        <p>Usuários</p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-person-add"></i>
@@ -180,7 +180,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
-                                        <h3>15</h3>
+                                        <h3 id="number-users-admin"></h3>
                           
                                         <p>Administradores</p>
                                     </div>

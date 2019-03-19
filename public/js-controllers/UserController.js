@@ -19,7 +19,9 @@ class UserController {
 
 			btn.disabled = true;
 
-			let values = this.getValues();			
+			let values = this.getValues();
+
+			if (!values) return false;	
 
 			this.getPhoto().then(
 				(content) => {
@@ -137,6 +139,8 @@ class UserController {
 
 		let tr = document.createElement('tr');
 
+		tr.dataset.user = JSON.stringify(objectUser);
+
 		tr.innerHTML = 
 			`
 				<td><img src="${objectUser.photo}" alt="User Image" class="img-circle img-sm"></td>
@@ -152,8 +156,31 @@ class UserController {
 
 		this.tableEl.appendChild(tr);
 
+		this.updateCount();
+
 		console.log(objectUser);
 	}
+
+	updateCount() {
+
+		let numberUser = 0;
+		let numberAdmin = 0;
+
+		[...this.tableEl.children].forEach(tr => {
+
+			numberUser++;
+
+			let user = JSON.parse(tr.dataset.user);
+
+			if (user._admin) numberAdmin++;
+
+		});
+
+		document.querySelector("#number-users-comomn").innerHTML = numberUser;
+		document.querySelector("#number-users-admin").innerHTML = numberAdmin;
+
+	}
+
 
 
 }
