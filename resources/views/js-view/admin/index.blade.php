@@ -192,7 +192,7 @@
                             <!-- ./col -->
                         </div>
 
-                        <div class="box box-success">
+                        <div class="box box-success" id="box-user-create">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Novo Usuário</h3>
                             </div>
@@ -493,38 +493,38 @@
                             </form>
                         </div>
 
-                        <div class="box box-primary" style="display:none;">
+                        <div class="box box-primary" id="box-user-update" style="display:none;">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Novo Usuário</h3>
+                                <h3 class="box-title">Editar Usuário</h3>
                             </div>
                             <!-- /.box-header -->
                             <!-- form start -->
                             <form role="form" id="form-user-update">
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label for="exampleInputName">Nome</label>
-                                        <input type="text" class="form-control" id="exampleInputName" placeholder="Digite o nome do usuário" name="name">
+                                        <label for="IName">Nome</label>
+                                        <input type="text" class="form-control" id="IName" placeholder="Digite o nome do usuário" name="Nname">
                                     </div>
                                     <div class="form-group">
                                         <label>Gênero</label>
                                             <div class="radio">
-                                                <label for="exampleInputGenderM">
-                                                <input type="radio" id="exampleInputGenderM" name="gender">
+                                                <label for="IGenderM">
+                                                <input type="radio" id="IGenderM" name="Ngender">
                                                 Masculino</label>
                                             </div>
                                         <div class="radio">
-                                            <label for="exampleInputGenderF">
-                                            <input type="radio" id="exampleInputGenderF" name="gender">
+                                            <label for="IGenderF">
+                                            <input type="radio" id="IGenderF" name="Ngender">
                                             Feminino</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputBirth">Nascimento</label>
-                                        <input type="date" class="form-control" id="exampleInputBirth" name="birth">
+                                        <label for="IBirth">Nascimento</label>
+                                        <input type="date" class="form-control" id="IBirth" name="Nbirth">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputCountry">País</label>
-                                        <select class="form-control" id="exampleInputCountry" name="country">
+                                        <label for="ICountry">País</label>
+                                        <select class="form-control" id="ICountry" name="Ncountry">
                                             <option value="" selected="selected">Selecione um país</option>
                                             <option value="United States">United States</option>
                                             <option value="United Kingdom">United Kingdom</option>
@@ -770,27 +770,27 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">E-mail</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o e-mail" name="email">
+                                        <label for="IEmail1">E-mail</label>
+                                        <input type="email" class="form-control" id="IEmail1" placeholder="Digite o e-mail" name="Nemail">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Senha</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Crie uma senha" name="password">
+                                        <label for="IPassword1">Senha</label>
+                                        <input type="password" class="form-control" id="IPassword1" placeholder="Crie uma senha" name="Npassword">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Foto</label>
-                                        <input type="file" id="exampleInputFile" name="photo">
+                                        <label for="IFile">Foto</label>
+                                        <input type="file" id="IFile" name="Nphoto">
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="admin"> Administrador
+                                            <input type="checkbox" name="Nadmin"> Administrador
                                         </label>
                                     </div>
                                 </div>
                                 <!-- /.box-body -->          
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Salvar</button>
-                                    <button type="button" class="btn btn-default">Cancelar</button>
+                                    <button type="button" class="btn btn-default btn-cancel">Cancelar</button>
                                 </div>
                             </form>
                         </div>
