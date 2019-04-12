@@ -208,14 +208,14 @@
                                         <label>Gênero</label>
                                             <div class="radio">
                                                 <label for="exampleInputGenderM">
-                                                <input type="radio" id="exampleInputGenderM" name="gender">
+                                                <input type="radio" id="exampleInputGenderM" name="gender" value="M" checked>
                                                 Masculino</label>
                                             </div>
-                                        <div class="radio">
-                                            <label for="exampleInputGenderF">
-                                            <input type="radio" id="exampleInputGenderF" name="gender">
-                                            Feminino</label>
-                                        </div>
+                                            <div class="radio">
+                                                <label for="exampleInputGenderF">
+                                                <input type="radio" id="exampleInputGenderF" name="gender" value="F">
+                                                Feminino</label>
+                                            </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputBirth">Nascimento</label>
@@ -509,14 +509,14 @@
                                         <label>Gênero</label>
                                             <div class="radio">
                                                 <label for="IGenderM">
-                                                <input type="radio" id="IGenderM" name="Ngender">
+                                                <input type="radio" id="IGenderM" name="Ngender" value="M" checked>
                                                 Masculino</label>
                                             </div>
-                                        <div class="radio">
-                                            <label for="IGenderF">
-                                            <input type="radio" id="IGenderF" name="Ngender">
-                                            Feminino</label>
-                                        </div>
+                                            <div class="radio">
+                                                <label for="IGenderF">
+                                                <input type="radio" id="IGenderF" name="Ngender" value="F">
+                                                Feminino</label>
+                                            </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="IBirth">Nascimento</label>

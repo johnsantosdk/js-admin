@@ -71,7 +71,7 @@ class UserController {
 
 			});
 
-			console.log(elements[0].files[0]);
+			console.log(elements[0]);
 
 			let file = elements[0].files[0];
 
@@ -167,19 +167,38 @@ class UserController {
 		tr.querySelector(".btn-edit").addEventListener("click", e => {
 			
 			let json = JSON.parse(tr.dataset.user);
+			console.log(tr.dataset.user);
 			let form = document.querySelector("#form-user-update");
 			
 			for (let name in json) {
 
 				let field = form.querySelector("[name="+name.replace("_", "N")+"]");
 
-				console.log(name, field);
+				console.log("aqui!!!",name, field);
 				
 				if (field) {
 
-					if (field.type == 'file') continue;
 
-					field.value = json[name];
+					switch (field.type) {
+						case 'file':
+							continue;
+						break;
+
+						case 'radio':
+							
+							field = form.querySelector("[name="+name.replace("_", "N")+"][value="+json[name]+"]");
+							console.log(field.type, field.checked);
+							field.checked = true;
+						break;
+
+						case 'checkbox':
+							field.checked = json[name];
+						break;
+
+						default:
+
+							field.value = json[name];
+					}
 				}
 			}
 
