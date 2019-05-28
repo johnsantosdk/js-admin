@@ -1,4 +1,4 @@
-let userController = new UserController("form-user-create", "tbody-users");
+let userController = new UserController("form-user-create", "form-user-update", "tbody-users");
 
 
 

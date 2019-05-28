@@ -1,8 +1,9 @@
 class UserController {
 
-	constructor(formId, tableId) {
+	constructor(formIdCreate, formIdUpdate, tableId) {
 
-		this.formEl = document.getElementById(formId);
+		this.formEl = document.getElementById(formIdCreate);
+		this.formUpdateEl = document.getElementById(formIdUpdate);
 		this.tableEl = document.getElementById(tableId);
 
 		this.onSubmit();
@@ -18,6 +19,20 @@ class UserController {
 
 		});
 
+		this.formUpdateEl.addEventListener("submit", event => {
+
+			event.preventDefault();
+
+			let btn = this.formUpdateEl.querySelector("[type=submit]");
+
+			btn.disabled = true;
+
+			let values = this.getValues(this.formUpdate);
+
+			console.log(values);
+
+		});
+
 	}
 
 	onSubmit() {
@@ -30,7 +45,7 @@ class UserController {
 
 			btn.disabled = true;
 
-			let values = this.getValues();
+			let values = this.getValues(this.formEl);
 
 			if (!values) return false;	
 
@@ -96,12 +111,12 @@ class UserController {
 		});
 	}
 
-	getValues() {
+	getValues(formEl) {
 
 		let user = {};
 		let isValid = true;
 
-		[...this.formEl.elements].forEach(function (field, index) {
+		[...formEl.elements].forEach(function (field, index) {
 
 			if(['name', 'email', 'password'].indexOf(field.name) > -1 && !field.value){
 
@@ -174,7 +189,7 @@ class UserController {
 
 				let field = form.querySelector("[name="+name.replace("_", "N")+"]");
 
-				console.log("aqui!!!",name, field);
+				//console.log("aqui!!!",name, field.type);
 				
 				if (field) {
 
@@ -185,10 +200,9 @@ class UserController {
 						break;
 
 						case 'radio':
-							
 							field = form.querySelector("[name="+name.replace("_", "N")+"][value="+json[name]+"]");
-							console.log(field.type, field.checked);
-							field.checked = true;
+							//console.log(field.type, field.checked);
+							//field.checked = true;
 						break;
 
 						case 'checkbox':
