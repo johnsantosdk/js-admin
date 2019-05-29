@@ -28,7 +28,7 @@ class UserController {
 			btn.disabled = true;
 
 			let values = this.getValues(this.formUpdateEl);
-
+			//console.log("Resultado do variável values:", this.formUpdateEl);
 			let index = this.formUpdateEl.dataset.trIndex;
 
 			let tr = this.tableEl.rows[index];
@@ -112,7 +112,7 @@ class UserController {
 
 			});
 
-			console.log(elements[0]);
+			//console.log(elements[0]);
 
 			let file = elements[0].files[0];
 
@@ -141,29 +141,28 @@ class UserController {
 
 		let user = {};
 		let isValid = true;
-
 		[...formEl.elements].forEach(function (field, index) {
-
-			if(['name', 'email', 'password'].indexOf(field.name) > -1 && !field.value){
-
+			console.log(field.value, index);
+			if(['name', 'Nname', 'email', 'Nemail', 'password', 'Npassword'].indexOf(field.name) > -1 && !field.value){
+				console.log("if 1");
 				field.parentElement.classList.add(['has-error']);
 
 				isValid = false;
 
 			}
 
-			if(field.name == "gender") {
-
+			if(field.name == "gender" || field.name == "Ngender") {
+				console.log("if 2");
 				if(field.checked) {
 					user[field.name] = field.value;
 				}
 
-			} else if (field.name === "admin") {
-
+			} else if (field.name === "admin" || field.name === "Nadmin") {
+				console.log("if 3");
 				user[field.name] = field.checked;
 
 			} else {
-
+				console.log("if 4");
 				user[field.name] = field.value;
 
 			}
@@ -171,6 +170,7 @@ class UserController {
 		});
 
 		if(!isValid) {
+			console.log("if 5");
 			return false;
 		}
 
@@ -184,6 +184,7 @@ class UserController {
 			user.photo, 
 			user.admin
 		);
+		console.log("User", User);
 
 	}
 
