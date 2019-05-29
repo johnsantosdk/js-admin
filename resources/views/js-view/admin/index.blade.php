@@ -778,6 +778,7 @@
                                         <input type="password" class="form-control" id="IPassword1" placeholder="Crie uma senha" name="Npassword">
                                     </div>
                                     <div class="form-group">
+                                        <img src="dist/img/boxed-bg.jpg" class="photo" style="max-height: 128px;">
                                         <label for="IFile">Foto</label>
                                         <input type="file" id="IFile" name="Nphoto">
                                     </div>
