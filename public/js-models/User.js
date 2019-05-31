@@ -1,8 +1,9 @@
 class User {
 
 	constructor(name, gender, birth, country, email, password, photo, admin) {
-
+		console.log("Antes User:", name);
 		this._name 		= name;
+		console.log("Depois User:", this._name);
 		this._gender 	= gender;
 		this._birth 	= birth;
 		this._country 	= country;

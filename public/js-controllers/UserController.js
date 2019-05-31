@@ -28,34 +28,54 @@ class UserController {
 			btn.disabled = true;
 
 			let values = this.getValues(this.formUpdateEl);
-			//console.log("Resultado do variável values:", this.formUpdateEl);
+			console.log("Resultado do variável values:", values);
 			let index = this.formUpdateEl.dataset.trIndex;
 
 			let tr = this.tableEl.rows[index];
 
 			let userOld = JSON.parse(tr.dataset.user);
-			console.log("antigo", userOld);
+
 			let result = Object.assign({}, userOld, values);
-			console.log("novo",result);
-			if(!values.photo) result._photo = userOld._photo;
 
-			tr.dataset.user = JSON.stringify(result);
-			tr.innerHTML = 
-				`
-					<td><img src="${result._photo}" alt="User Image" class="img-circle img-sm"></td>
-		            <td>${result._name}</td>
-		            <td>${result._email}</td>
-		            <td>${(result._admin) ? 'Sim':'Não'}</td>
-		            <td>${Utils.dateFormat(result._register)}</td>
-		            <td>
-		            	<button type="button" class="btn btn-primary btn-edit btn-xs btn-flat">Editar</button>
-		                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-		            </td>
-				`;
+			this.getPhoto(this.formUpdateEl).then(
+				(content) => {
 
-			this.addEventsTr(tr);
+					if(!values.photo) {
+						result._photo = userOld._photo;
+					} else {
+						result._photo = content;
+					}
 
-			this.updateCount();
+					tr.dataset.user = JSON.stringify(result);
+
+					tr.innerHTML = 
+						`
+							<td><img src="${result._photo}" alt="User Image" class="img-circle img-sm"></td>
+				            <td>${result._name}</td>
+				            <td>${result._email}</td>
+				            <td>${(result._admin) ? 'Sim':'Não'}</td>
+				            <td>${Utils.dateFormat(result._register)}</td>
+				            <td>
+				            	<button type="button" class="btn btn-primary btn-edit btn-xs btn-flat">Editar</button>
+				                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
+				            </td>
+						`;
+
+					this.addEventsTr(tr);
+
+					this.updateCount();
+
+					this.formUpdateEl.reset();
+
+					btn.disabled = false;
+
+					this.showPanelCreate();
+
+				},
+				(e) => {
+					console.error(e);
+				}
+			);
 
 		});
 
@@ -75,7 +95,7 @@ class UserController {
 
 			if (!values) return false;	
 
-			this.getPhoto().then(
+			this.getPhoto(this.formEl).then(
 				(content) => {
 
 					values.photo = content;
@@ -90,21 +110,21 @@ class UserController {
 				(e) => {
 					console.error(e);
 				}
-				);
+			);
 
 		});
 
 	}
 
-	getPhoto(callback) {
+	getPhoto(formEl) {
 
 		return new Promise( (resolve, reject) => {
 
 			let fileReader = new FileReader();
 
-			let elements = [...this.formEl.elements].filter(item => {
+			let elements = [...formEl.elements].filter(item => {
 
-				if (item.name === 'photo') {
+				if (item.name === 'photo' || item.name === 'Nphoto') {
 					
 					return item;
 
@@ -141,10 +161,9 @@ class UserController {
 
 		let user = {};
 		let isValid = true;
+
 		[...formEl.elements].forEach(function (field, index) {
-			console.log(field.value, index);
 			if(['name', 'Nname', 'email', 'Nemail', 'password', 'Npassword'].indexOf(field.name) > -1 && !field.value){
-				console.log("if 1");
 				field.parentElement.classList.add(['has-error']);
 
 				isValid = false;
@@ -152,17 +171,14 @@ class UserController {
 			}
 
 			if(field.name == "gender" || field.name == "Ngender") {
-				console.log("if 2");
 				if(field.checked) {
 					user[field.name] = field.value;
 				}
 
 			} else if (field.name === "admin" || field.name === "Nadmin") {
-				console.log("if 3");
 				user[field.name] = field.checked;
 
 			} else {
-				console.log("if 4");
 				user[field.name] = field.value;
 
 			}
@@ -170,21 +186,33 @@ class UserController {
 		});
 
 		if(!isValid) {
-			console.log("if 5");
 			return false;
 		}
 
-		return new User(
-			user.name, 
-			user.gender, 
-			user.birth, 
-			user.country, 
-			user.email, 
-			user.password, 
-			user.photo, 
-			user.admin
-		);
-		console.log("User", User);
+		if(typeof user.name !== "undefined"){
+			return new User(
+				user.name, 
+				user.gender, 
+				user.birth, 
+				user.country, 
+				user.email, 
+				user.password, 
+				user.photo, 
+				user.admin
+			);
+		}else {
+			return new User(
+				user.Nname, 
+				user.Ngender, 
+				user.Nbirth, 
+				user.Ncountry, 
+				user.Nemail, 
+				user.Npassword, 
+				user.Nphoto, 
+				user.Nadmin
+			);
+		}
+		
 
 	}
 
