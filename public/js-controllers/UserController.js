@@ -29,7 +29,7 @@ class UserController {
 			btn.disabled = true;
 
 			let values = this.getValues(this.formUpdateEl);
-			console.log("Resultado do variável values:", values);
+
 			let index = this.formUpdateEl.dataset.trIndex;
 
 			let tr = this.tableEl.rows[index];
@@ -50,6 +50,8 @@ class UserController {
 					let user = new User();
 
 					user.loadFromJSON(result);
+
+					user.save();
 
 					this.getTr(user, tr);
 
@@ -90,7 +92,8 @@ class UserController {
 
 					values.photo = content;
 
-					this.insert(values);
+					//this.insert(values);
+					values.save();
 
 					this.addLine(values);
 
@@ -238,17 +241,17 @@ class UserController {
 
 	}
 
-	insert(data) {
+	// insert(data) {
 
-		let users = this.getUsersStorage();
+	// 	let users = this.getUsersStorage();
 
-		users.push(data);
-		console.log("Teste de session:", data);
+	// 	users.push(data);
+	// 	console.log("Teste de session:", data);
 
-		//sessionStorage.setItem("users", JSON.stringify(users));
-		localStorage.setItem("users", JSON.stringify(users));
+	// 	//sessionStorage.setItem("users", JSON.stringify(users));
+	// 	localStorage.setItem("users", JSON.stringify(users));
 
-	}
+	// }
 
 	addLine(objectUser) {
 
