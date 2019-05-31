@@ -47,26 +47,11 @@ class UserController {
 						result._photo = content;
 					}
 
-					// tr.dataset.user = JSON.stringify(result);
-					//new
 					let user = new User();
+
 					user.loadFromJSON(result);
+
 					this.getTr(user, tr);
-
-					// tr.innerHTML = 
-					// 	`
-					// 		<td><img src="${result._photo}" alt="User Image" class="img-circle img-sm"></td>
-				 //            <td>${result._name}</td>
-				 //            <td>${result._email}</td>
-				 //            <td>${(result._admin) ? 'Sim':'Não'}</td>
-				 //            <td>${Utils.dateFormat(result._register)}</td>
-				 //            <td>
-				 //            	<button type="button" class="btn btn-primary btn-edit btn-xs btn-flat">Editar</button>
-				 //                <button type="button" class="btn btn-danger btn-delete btn-xs btn-flat">Excluir</button>
-				 //            </td>
-					// 	`;
-
-					// this.addEventsTr(tr);
 
 					this.updateCount();
 
@@ -267,25 +252,8 @@ class UserController {
 
 	addLine(objectUser) {
 
-		// let tr = document.createElement('tr');
+
 		let tr = this.getTr(objectUser);
-
-		// tr.dataset.user = JSON.stringify(objectUser);
-
-		// tr.innerHTML = 
-		// 	`
-		// 		<td><img src="${objectUser.photo}" alt="User Image" class="img-circle img-sm"></td>
-	 //            <td>${objectUser.name}</td>
-	 //            <td>${objectUser.email}</td>
-	 //            <td>${(objectUser.admin) ? 'Sim':'Não'}</td>
-	 //            <td>${Utils.dateFormat(objectUser.register)}</td>
-	 //            <td>
-	 //            	<button type="button" class="btn btn-primary btn-edit btn-xs btn-flat">Editar</button>
-	 //                <button type="button" class="btn btn-danger btn-delete btn-xs btn-flat">Excluir</button>
-	 //            </td>
-		// 	`;
-
-		// this.addEventsTr(tr);
 
 		this.tableEl.appendChild(tr);
 
