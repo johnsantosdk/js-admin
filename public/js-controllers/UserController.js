@@ -212,23 +212,10 @@ class UserController {
 
 	}
 
-	getUsersStorage() {
-
-		let users = [];
-		/*sessionStorage*/
-		if (localStorage.getItem("users")) {
-
-			users = JSON.parse(localStorage.getItem("users"));
-
-		}
- 
- 		return users;
-
-	}
 
 	selectAll() {
 
-		let users = this.getUsersStorage();
+		let users = User.getUsersStorage();
 
 		users.forEach(dataUser => {
 
@@ -241,18 +228,6 @@ class UserController {
 		});
 
 	}
-
-	// insert(data) {
-
-	// 	let users = this.getUsersStorage();
-
-	// 	users.push(data);
-	// 	console.log("Teste de session:", data);
-
-	// 	//sessionStorage.setItem("users", JSON.stringify(users));
-	// 	localStorage.setItem("users", JSON.stringify(users));
-
-	// }
 
 	addLine(objectUser) {
 
@@ -295,6 +270,12 @@ class UserController {
 		tr.querySelector(".btn-delete").addEventListener("click", e => {
 
 			if(confirm("Deseja realmente excluir?")){
+
+				let user = new User();
+
+				user.loadFromJSON(JSON.parse(tr.dataset.user));
+
+				user.remove();
 
 				tr.remove();
 
