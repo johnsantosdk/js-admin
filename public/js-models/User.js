@@ -1,8 +1,8 @@
 class User {
 
-	constructor(id, name, gender, birth, country, email, password, photo, admin) {
+	constructor(name, gender, birth, country, email, password, photo, admin) {
 		
-		this._id 		= id;
+		this._id;
 		this._name 		= name;
 		this._gender 	= gender;
 		this._birth 	= birth;
@@ -109,8 +109,10 @@ class User {
 
 			users.map(u => {
 
-				if(u._id === this.id) {
-					u = this;
+				if(u._id == this.id) {
+					
+					Object.assign(u, this);
+
 				}
 
 				return u;

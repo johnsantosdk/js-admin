@@ -179,6 +179,7 @@ class UserController {
 			}
 
 		});
+		console.log("Teste no getValues()", user);
 
 		if(!isValid) {
 			return false;
